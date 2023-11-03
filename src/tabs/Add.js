@@ -75,14 +75,13 @@ const Add = () => {
         imageUrl: url + '',
       })
       .then(() => {
-      alert("Successfully Added Item")
+        alert('Successfully Added Item');
         console.log('Item added!');
-
       });
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Add Item</Text>
@@ -96,7 +95,7 @@ const Add = () => {
         ) : null}
         <TextInput
           placeholder="Enter Item Name"
-          style={styles.inputStyle}
+          style={[styles.inputStyle, {marginTop: 0}]}
           value={name}
           onChangeText={text => setName(text)}
         />
@@ -152,14 +151,18 @@ const styles = StyleSheet.create({
   header: {
     height: 60,
     width: '100%',
-    backgroundColor: '#fff',
-    elevation: 5,
-    paddingLeft: 20,
+    // backgroundColor: '#fff',
+    // elevation: 5,
     justifyContent: 'center',
+
+    // marginTop: 10,
   },
   headerText: {
+    paddingRight: 30,
     fontSize: 18,
     fontWeight: '700',
+    // alignSelf: 'center',
+    textAlign: 'center',
   },
   inputStyle: {
     width: '90%',

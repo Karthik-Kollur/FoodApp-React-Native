@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   },
   bottomTabView: {
     flexDirection: 'row',
+
     height: 60,
     width: '100%',
     backgroundColor: '#fff',

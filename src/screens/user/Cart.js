@@ -30,7 +30,7 @@ const Cart = ({navigation}) => {
     tempDart = user._data.cart;
     tempDart.map(itm => {
       if (itm.id == item.id) {
-        itm.data.qty = itm.data.qty ? itm.data.qty + 1 : 1;
+        itm.data.qty = itm.data.qty + 1;
       }
     });
     firestore().collection('Users').doc(userId).update({
@@ -44,9 +44,12 @@ const Cart = ({navigation}) => {
     tempDart = user._data.cart;
     tempDart.map(itm => {
       if (itm.id == item.id) {
-        itm.data.qty = itm.data.qty ? itm.data.qty - 1 : 1;
+        itm.data.qty = itm.data.qty - 1;
       }
     });
+    // if (item.data.qty == 0) {
+    //   tempDart = [];
+    // }
     firestore().collection('Users').doc(userId).update({
       cart: tempDart,
     });

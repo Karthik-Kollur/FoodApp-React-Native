@@ -25,6 +25,7 @@ const UserSignup = ({navigation}) => {
         mobile: mobile,
         userId: userId,
         cart: [],
+        address: [],
       })
       .then(res => {
         setModalVisible(false);

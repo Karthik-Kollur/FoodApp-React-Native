@@ -25,6 +25,7 @@ const Main = () => {
       .then(querySnapshot => {
         console.log('Total users: ', querySnapshot.size);
         let tempData = [];
+
         querySnapshot.forEach(documentSnapshot => {
           console.log(
             'User ID: ',
@@ -36,6 +37,7 @@ const Main = () => {
             data: documentSnapshot.data(),
           });
         });
+
         setItems(tempData);
       });
     // Stop listening for updates when no longer required
@@ -50,36 +52,38 @@ const Main = () => {
     setCartCount(user._data.cart.length);
   };
   const onAddToCart = async (item, index) => {
-    console.log('>>>>>add to cart clicked');
-
     const user = await firestore().collection('Users').doc(userId).get();
     console.log(user._data.cart);
-    let tempCart = [];
+    let tempDart = [];
 
-    tempCart = user._data.cart;
-    if (tempCart.length > 0) {
+    tempDart = user._data.cart;
+    if (tempDart.length > 0) {
       let existing = false;
-      tempCart.map(itm => {
+      tempDart.map(itm => {
         if (itm.id == item.id) {
           existing = true;
-
-          itm.data.qty = itm.data.qty ? itm.data.qty + 1 : 1;
+          itm.data.qty = itm.data.qty + 1;
         }
       });
       if (existing == false) {
-        item.data.qty = 1;
-        tempCart.push(item);
+        item.data.qty = 0;
+        item.data.qty = 0;
+        item.data.qty = item.data.qty + 1;
+        item.data.qty = item.data.qty + 1;
+        tempDart.push(item);
       }
       firestore().collection('Users').doc(userId).update({
-        cart: tempCart,
+        cart: tempDart,
       });
     } else {
-      item.data.qty = 1;
-      tempCart.push(item);
+      item.data.qty = 0;
+      item.data.qty = item.data.qty + 1;
+      console.log(tempDart);
+      tempDart.push(item);
     }
-    console.log(tempCart);
+    console.log(tempDart);
     firestore().collection('Users').doc(userId).update({
-      cart: tempCart,
+      cart: tempDart,
     });
     getCartItems();
   };
@@ -131,7 +135,8 @@ const Main = () => {
 
 export default Main;
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, marginBottom: 20},
+
   itemView: {
     flexDirection: 'row',
     width: '90%',
@@ -140,19 +145,20 @@ const styles = StyleSheet.create({
     elevation: 4,
     marginTop: 10,
     borderRadius: 10,
-    height: 100,
+    height: 120,
     marginBottom: 10,
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   itemImage: {
-    width: 90,
-    height: 90,
+    width: 130,
+    height: 110,
     borderRadius: 10,
     margin: 5,
   },
   nameView: {
     width: '30%',
-    margin: 10,
+    margin: 0,
   },
   priceView: {
     flexDirection: 'row',
@@ -180,6 +186,7 @@ const styles = StyleSheet.create({
   addToCartBtn: {
     backgroundColor: 'green',
     padding: 10,
+    marginRight: 10,
     borderRadius: 10,
   },
 });

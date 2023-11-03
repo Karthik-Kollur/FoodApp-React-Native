@@ -5,11 +5,20 @@ import Orders from '../tabs/Orders';
 import Notifications from '../tabs/Notifications';
 import Items from '../tabs/Items';
 import Add from '../tabs/Add';
+import Header from './common/Header';
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   return (
     <View style={styles.container}>
+      <Header
+        title={'Admin'}
+        icon={require('../images/admin.png')}
+        count={0}
+        onClickIcon={() => {
+          // navigation.navigate('Cart');
+        }}
+      />
       {selectedTab == 0 ? (
         <Items />
       ) : selectedTab == 1 ? (
@@ -104,7 +113,7 @@ export default Dashboard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   bottomView: {
     width: '100%',

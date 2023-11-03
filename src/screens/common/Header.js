@@ -11,6 +11,7 @@ const {height, width} = Dimensions.get('window');
 const Header = ({title, icon, count, onClickIcon}) => {
   return (
     <View style={styles.container}>
+      <Text> </Text>
       <Text style={styles.title}>{title}</Text>
       {icon && (
         <View
@@ -39,7 +40,7 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     height: 60,
-    width: width,
+    width: '100%',
     elevation: 5,
     backgroundColor: '#fff',
 
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   title: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: '600',
     color: 'purple',
   },
