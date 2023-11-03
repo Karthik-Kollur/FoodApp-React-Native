@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LanguageModal from '../common/LanguageModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {translation} from '../../LanguageUtils';
@@ -9,7 +9,16 @@ const SelectLogin = ({navigation}) => {
   const [selectedLang, setSelectedLang] = useState(0);
   const saveSelectedLang = async index => {
     await AsyncStorage.setItem('LANG', index + '');
+    let lang = AsyncStorage.getItem('LANG');
+    selectedLang(lang);
   };
+  useEffect(() => {
+    AsyncStorage.getItem('LANG').then(lang => {
+      if (lang !== null) {
+        setSelectedLang(parseInt(lang, 10)); // Parse the value as an integer
+      }
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -71,6 +80,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    height: 55,
     fontWeight: '700',
   },
 

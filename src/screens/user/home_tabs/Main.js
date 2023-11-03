@@ -67,8 +67,7 @@ const Main = () => {
       });
       if (existing == false) {
         item.data.qty = 0;
-        item.data.qty = 0;
-        item.data.qty = item.data.qty + 1;
+
         item.data.qty = item.data.qty + 1;
         tempDart.push(item);
       }

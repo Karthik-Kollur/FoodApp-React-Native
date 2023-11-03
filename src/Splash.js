@@ -6,8 +6,8 @@ import SelectLogin from './screens/user/SelectLogin';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('SelectLogin');
-      // checkLogin();
+      // navigation.navigate('SelectLogin');
+      checkLogin();
     }, 3000);
   });
   const checkLogin = () => {
