@@ -38,7 +38,11 @@ const UserLogin = ({navigation}) => {
             querySnapshot.docs[0]._data.email === email &&
             querySnapshot.docs[0]._data.password === password
           ) {
-            goToNextScreen();
+            goToNextScreen(
+              querySnapshot.docs[0]._data.userId,
+              querySnapshot.docs[0]._data.mobile,
+              querySnapshot.docs[0]._data.name,
+            );
           } else {
             alert('Please Enter Valid email and password');
           }
@@ -51,10 +55,10 @@ const UserLogin = ({navigation}) => {
       });
   };
   const goToNextScreen = async (userId, mobile, name) => {
-    await AsyncStorage.setItem('EMAIL', email);
-    // await AsyncStorage.setItem('USERID', userId);
-    // await AsyncStorage.setItem('MOBILE', mobile);
-    // await AsyncStorage.setItem('NAME', name);
+    await AsyncStorage.setItem('Email_Key', email);
+    await AsyncStorage.setItem('USERID', userId);
+    await AsyncStorage.setItem('MOBILE', mobile);
+    await AsyncStorage.setItem('NAME', name);
     navigation.navigate('Home');
   };
   return (

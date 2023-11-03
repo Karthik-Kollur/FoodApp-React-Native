@@ -6,17 +6,27 @@ import SelectLogin from './screens/user/SelectLogin';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      // navigation.navigate('SelectLogin');
-      checkLogin();
+      navigation.navigate('SelectLogin');
+      // checkLogin();
     }, 3000);
   });
   const checkLogin = () => {
-    const email = AsyncStorage.getItem('EMAIL');
-    if (email !== null) {
-      navigation.navigate('Home');
-    } else {
-      navigation.navigate('SelectLogin');
-    }
+    //    const email = AsyncStorage.getItem('Email_Key');
+    AsyncStorage.getItem('Email_Key')
+      .then(value => {
+        if (value !== null) {
+          navigation.navigate('Home');
+          console.log(`Value for ${key}: ${value}`);
+        } else {
+          // The item doesn't exist
+          navigation.navigate('SelectLogin');
+          console.log(`No value found for ${key}`);
+        }
+      })
+      .catch(error => {
+        // Handle any errors that may occur during the retrieval
+        console.error('Error retrieving item:', error);
+      });
   };
 
   return (

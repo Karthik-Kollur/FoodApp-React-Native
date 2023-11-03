@@ -50,30 +50,36 @@ const Main = () => {
     setCartCount(user._data.cart.length);
   };
   const onAddToCart = async (item, index) => {
+    console.log('>>>>>add to cart clicked');
+
     const user = await firestore().collection('Users').doc(userId).get();
     console.log(user._data.cart);
-    let tempDart = [];
-    tempDart = user._data.cart;
-    if (tempDart.length > 0) {
+    let tempCart = [];
+
+    tempCart = user._data.cart;
+    if (tempCart.length > 0) {
       let existing = false;
-      tempDart.map(itm => {
+      tempCart.map(itm => {
         if (itm.id == item.id) {
           existing = true;
-          itm.data.qty = itm.data.qty + 1;
+
+          itm.data.qty = itm.data.qty ? itm.data.qty + 1 : 1;
         }
       });
       if (existing == false) {
-        tempDart.push(item);
+        item.data.qty = 1;
+        tempCart.push(item);
       }
       firestore().collection('Users').doc(userId).update({
-        cart: tempDart,
+        cart: tempCart,
       });
     } else {
-      tempDart.push(item);
+      item.data.qty = 1;
+      tempCart.push(item);
     }
-    console.log(tempDart);
+    console.log(tempCart);
     firestore().collection('Users').doc(userId).update({
-      cart: tempDart,
+      cart: tempCart,
     });
     getCartItems();
   };

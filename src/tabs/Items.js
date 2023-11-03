@@ -47,6 +47,7 @@ const Items = () => {
       .doc(docId)
       .delete()
       .then(() => {
+      alert("Successfully deleted the Item");
         console.log('Item deleted!');
         getItems();
       });

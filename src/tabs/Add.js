@@ -75,7 +75,9 @@ const Add = () => {
         imageUrl: url + '',
       })
       .then(() => {
+      alert("Successfully Added Item")
         console.log('Item added!');
+
       });
   };
 

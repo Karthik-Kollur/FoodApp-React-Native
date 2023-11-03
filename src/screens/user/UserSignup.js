@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import Loader from '../common/Loader';
 import firestore from '@react-native-firebase/firestore';
+import uuid from 'react-native-uuid';
 
 const UserSignup = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -13,16 +14,17 @@ const UserSignup = ({navigation}) => {
 
   const saveUser = () => {
     setModalVisible(true);
-    // const userId = uuid.v4();
+    const userId = uuid.v4();
     firestore()
       .collection('Users')
-      .add({
+      .doc(userId)
+      .set({
         name: name,
         email: email,
         password: password,
         mobile: mobile,
-        // userId: userId,
-        // cart: [],
+        userId: userId,
+        cart: [],
       })
       .then(res => {
         setModalVisible(false);
@@ -64,7 +66,7 @@ const UserSignup = ({navigation}) => {
       />
 
       <TouchableOpacity
-        style={styles.loginBtn}
+        style={styles.signUpBtn}
         onPress={() => {
           if (
             email !== '' &&
@@ -78,7 +80,7 @@ const UserSignup = ({navigation}) => {
             alert('Enter Email and password');
           }
         }}>
-        <Text style={styles.btnText}>Login</Text>
+        <Text style={styles.btnText}>Sign Up</Text>
       </TouchableOpacity>
       <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </View>
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '90%',
   },
-  loginBtn: {
+  signUpBtn: {
     backgroundColor: 'orange',
     width: '90%',
     height: 50,
