@@ -3,8 +3,8 @@ import React from 'react';
 
 const Notifications = () => {
   return (
-    <View>
-      <Text>Notifications</Text>
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <Text style={{textAlign: 'center'}}>Notifications</Text>
     </View>
   );
 };

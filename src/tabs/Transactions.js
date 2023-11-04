@@ -3,8 +3,8 @@ import React from 'react';
 
 const Transactions = () => {
   return (
-    <View>
-      <Text>Transactions</Text>
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <Text style={{textAlign: 'center'}}>Transactions</Text>
     </View>
   );
 };

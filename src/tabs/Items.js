@@ -15,6 +15,7 @@ const Items = () => {
   const isFocused = useIsFocused();
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
+  const [itemCount, setItemCount] = useState(0);
   useEffect(() => {
     getItems();
   }, [isFocused]);
@@ -36,6 +37,7 @@ const Items = () => {
             data: documentSnapshot.data(),
           });
           setItems(tempData);
+          setItemCount(tempData.length);
           console.log(tempData);
         });
       });
@@ -47,7 +49,7 @@ const Items = () => {
       .doc(docId)
       .delete()
       .then(() => {
-      alert("Successfully deleted the Item");
+        alert('Successfully deleted the Item');
         console.log('Item deleted!');
         getItems();
       });
@@ -55,6 +57,18 @@ const Items = () => {
 
   return (
     <View style={styles.container}>
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: '600',
+          textAlign: 'center',
+          marginTop: 15,
+          marginRight: 20,
+          marginBottom: 10,
+        }}>
+        {' '}
+        Number of Items : {itemCount}{' '}
+      </Text>
       {items.length === 0 ? (
         <View style={styles.emptyView}>
           <Text style={styles.emptyText}>No items to display</Text>
@@ -64,7 +78,11 @@ const Items = () => {
           data={items}
           renderItem={({item, index}) => {
             return (
-              <View style={styles.itemView}>
+              <View
+                style={[
+                  styles.itemView,
+                  index === items.length - 1 ? styles.lastItem : null,
+                ]}>
                 <Image
                   source={{uri: item.data.imageUrl}}
                   style={styles.itemImage}
@@ -177,5 +195,8 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  lastItem: {
+    marginBottom: 70, // Add extra margin to the last item becoz of tabBar
   },
 });

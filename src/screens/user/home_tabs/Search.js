@@ -3,8 +3,8 @@ import React from 'react';
 
 const Search = () => {
   return (
-    <View>
-      <Text>Search</Text>
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <Text style={{textAlign: 'center'}}>Search</Text>
     </View>
   );
 };

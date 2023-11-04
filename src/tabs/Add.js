@@ -200,6 +200,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 10,
   },
 });

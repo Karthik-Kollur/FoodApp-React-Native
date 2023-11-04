@@ -100,7 +100,11 @@ const Main = () => {
         data={items}
         renderItem={({item, index}) => {
           return (
-            <View style={styles.itemView}>
+            <View
+              style={[
+                styles.itemView,
+                index === items.length - 1 ? styles.lastItem : null,
+              ]}>
               <Image
                 source={{uri: item.data.imageUrl}}
                 style={styles.itemImage}
@@ -187,5 +191,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginRight: 10,
     borderRadius: 10,
+  },
+  lastItem: {
+    marginBottom: 70, // Add extra margin to the last item becoz of tabBar
   },
 });

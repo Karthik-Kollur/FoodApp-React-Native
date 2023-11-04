@@ -3,8 +3,8 @@ import React from 'react';
 
 const WishLists = () => {
   return (
-    <View>
-      <Text>WishLists</Text>
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <Text style={{textAlign: 'center'}}>WishLists</Text>
     </View>
   );
 };
