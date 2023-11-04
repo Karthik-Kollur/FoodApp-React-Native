@@ -15,7 +15,9 @@ const OrderStatus = ({navigation}) => {
       .collection('Users')
       .doc(route.params.userId)
       .get();
+    console.log('>>>>>>>>>>>>>>>>>' + user);
     tempOrders = user._data.orders;
+    console.log('>>>>>>>>>>>>>>>>>' + tempOrders);
     tempOrders.push({
       items: route.params.cartList,
       address: route.params.address,
@@ -26,6 +28,7 @@ const OrderStatus = ({navigation}) => {
       orderTotal: route.params.total,
       paymentId: route.params.paymentId,
     });
+    console.log('>>>>>>>>>>>>>>>>>' + tempOrders);
     firestore().collection('Users').doc(route.params.userId).update({
       cart: [],
       orders: tempOrders,

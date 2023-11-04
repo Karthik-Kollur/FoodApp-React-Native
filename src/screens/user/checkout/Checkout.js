@@ -55,14 +55,17 @@ const Checkout = ({navigation}) => {
     return total;
   };
   const payNow = async () => {
-    const email = await AsyncStorage.getItem('EMAIL');
+    const email = await AsyncStorage.getItem('Email_Key');
     const name = await AsyncStorage.getItem('NAME');
     const mobile = await AsyncStorage.getItem('MOBILE');
     var options = {
       description: 'Credits towards consultation',
-      image: require('../../../images/logo.png'),
+
+      image:
+        'https://logo.com/image-cdn/images/kts928pd/production/11e5681ac3b77c52480a1748abb1950ba40e4884-357x358.png?w=1080&q=72', // Replace with your image URL
+
       currency: 'INR',
-      key: 'rzp_test_2VYHup8J177yIx',
+      key: 'rzp_test_U38z5brC8BftRg',
       amount: getTotal() * 100,
       name: 'Food App',
       order_id: '', //Replace this with an order_id created using Orders API.

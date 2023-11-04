@@ -18,7 +18,14 @@ const UserLogin = ({navigation}) => {
 
   const getLang = async () => {
     console.log(await AsyncStorage.getItem('LANG'));
-    setSelectedLang(parseInt(await AsyncStorage.getItem('LANG')));
+
+    let lang = await AsyncStorage.getItem('LANG');
+    console.log(lang);
+    if (lang !== null) {
+      setSelectedLang(parseInt(await AsyncStorage.getItem('LANG')));
+    } else {
+      setSelectedLang(0);
+    }
   };
 
   const adminLogin = async () => {
